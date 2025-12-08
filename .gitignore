@@ -114,7 +114,7 @@ dmypy.json
 *.dat
 
 # Text files
-*.txt
+# *.txt
 
 # Backup files
 *.bak
