@@ -24,7 +24,7 @@ A comprehensive analysis of the COVID-19 pandemic using data from "Our World in 
   - Data cleaning and preprocessing
   - Time-based aggregations
 
-[View Project](./01_covid19_analysis/01_covid19_global_analysis.ipynb)
+[View Project](./01_covid19_analysis/notebooks/01_covid19_global_analysis.ipynb)
 
 ### 2-1. Titanic Survival Analysis
 An exploratory data analysis of the famous Titanic dataset, investigating factors that influenced passenger survival. Key analyses include:
@@ -48,7 +48,7 @@ An exploratory data analysis of the famous Titanic dataset, investigating factor
   - Family size influence on survival chances
   - Port of embarkation survival patterns
 
-[View Project](./02_titanic_analysis/02-1_titanic_survival_analysis.ipynb)
+[View Project](./02_titanic_analysis/notebooks/02-1_titanic_survival_analysis.ipynb)
 
 ### 2-2. Titanic Data Visualizations
 A comprehensive visualization study of the Titanic dataset, focusing on different aspects of passenger demographics and their relationships. Features include:
@@ -69,7 +69,7 @@ A comprehensive visualization study of the Titanic dataset, focusing on differen
   - Matplotlib for custom plots
   - NumPy and Pandas for data handling
 
-[View Project](./02_titanic_analysis/02-2_titanic_visualisations.ipynb)
+[View Project](./02_titanic_analysis/notebooks/02-2_titanic_visualisations.ipynb)
 
 ### 3. Text Summarization
 A simple project demonstrating text summarization techniques. This project showcases:
@@ -82,7 +82,7 @@ A simple project demonstrating text summarization techniques. This project showc
   - Text data cleaning and preparation
   - Handling of large text datasets
 
-[View Project](./03_text_summarization/03_text_summarization.ipynb)
+[View Project](./03_text_summarization/notebooks/03_text_summarization.ipynb)
 
 ### 4. Hotel Sentiment Analysis
 An analysis of hotel reviews to understand sentiment trends and correlations between different aspects of hotel services and overall guest satisfaction. This project includes:
@@ -95,7 +95,7 @@ An analysis of hotel reviews to understand sentiment trends and correlations bet
   - Visualization: Includes code for visualizing data trends and correlations.
 - **Statistical Testing**: Uses Pearson correlation tests to determine dependencies between overall satisfaction and specific sentiment scores.
 
-[View Project](./04_sentiment_analysis/04_sentiment_analysis.ipynb)
+[View Project](./04_sentiment_analysis/notebooks/04_sentiment_analysis.ipynb)
 
 ### 5. Customer Segmentation using RFM Analysis
 This project involves analyzing transaction data to segment customers based on Recency, Frequency, and Monetary Value (RFM) metrics. Key features include:
@@ -108,7 +108,7 @@ This project involves analyzing transaction data to segment customers based on R
   - Grouping customers by RFM scores to identify most valuable, loyal, and at-risk customers.
 - **Visualization**: Plots distributions of RFM metrics and customer segments.
 
-[View Project](./05_customer_segmentation/05_customer_segmentation.ipynb)
+[View Project](./05_customer_segmentation/notebooks/05_customer_segmentation.ipynb)
 
 ### 6. Fake News Detection
 This project focuses on detecting fake news using Natural Language Processing (NLP) techniques. Key features include:
@@ -128,7 +128,7 @@ This project focuses on detecting fake news using Natural Language Processing (N
 - **Visualization**:
   - The distribution of predictions is visualized to understand the model's performance.
 
-[View Project](./06_fake_news_detection/06_fake_news_detection.ipynb)
+[View Project](./06_fake_news_detection/notebooks/06_fake_news_detection.ipynb)
 
 ### 7. AI-Augmented Project Management
 This capstone project leverages AI and machine learning to enhance project management processes. Key features include:
@@ -147,7 +147,7 @@ This capstone project leverages AI and machine learning to enhance project manag
 - **Visualization**:
   - Distribution of task labels is visualized to understand the dataset.
 
-[View Project](./07_augmented_project_management/07_augmented_project_management.ipynb)
+[View Project](./07_augmented_project_management/notebooks/07_augmented_project_management.ipynb)
 
 ## Technical Skills Demonstrated
 
@@ -200,39 +200,28 @@ This capstone project leverages AI and machine learning to enhance project manag
   - Application of NLP techniques to detect fake news content.
 
 ## Repository Structure
-├── datasets/
-│   ├── 01_covid19/
-│   │   └── raw_data.csv
-│   ├── 02_titanic/
-│   │   └── passenger_data.csv
-│   ├── 03_text_summarization/
-│   │   └── articles.csv
-│   ├── 04_hotel_sentiment/
-│   │   └── ReviewProSentiment Data.xlsx
-│   ├── 05_customer_segmentation/
-│   │   └── Trx Data.csv
-│   ├── 06_fake_news_detection/
-│   │   ├── Train.csv
-│   │   └── Test.csv
-│   └── 07_project_management/
-│       └── capstone_raw.xlsx
+
+The repository is organized into self-contained project directories, each with the following standard structure:
+
+```text
+Project_Folder/
+├── notebooks/      # Jupyter Notebooks containing analysis and modeling
+├── data/           # Datasets used in the project
+├── src/            # Python source code and utility scripts
+└── results/        # Generated plots, models, and reports
+```
+
+### Projects
 ├── 01_covid19_analysis/
-│   └── 01_covid19_global_analysis.ipynb
 ├── 02_titanic_analysis/
-│   ├── 02_titanic_survival_analysis.ipynb
-│   └── 03_titanic_visualisations.ipynb
 ├── 03_text_summarization/
-│   └── 03_text_summarization.ipynb
 ├── 04_sentiment_analysis/
-│   └── 04_sentiment_analysis.ipynb
 ├── 05_customer_segmentation/
-│   └── 05_customer_segmentation.ipynb
 ├── 06_fake_news_detection/
-│   └── 06_fake_news_detection.ipynb
 ├── 07_augmented_project_management/
-│   └── 07_augmented_project_management.ipynb
 ├── LICENSE
-└── README.md
+├── README.md
+└── requirements.txt
 
 
 ## Dependencies
