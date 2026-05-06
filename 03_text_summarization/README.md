@@ -4,8 +4,8 @@
 
 This project explores **extractive text summarization** techniques, progressing from basic frequency-based methods to more advanced graph-based approaches. The project now includes:
 
-- **Original method**: Frequency-based extractive summarizer (03_text_summarization.ipynb)
-- **Enhanced version**: Advanced TextRank implementation with evaluation (02_text_summarization_expanded.ipynb)
+- **Original method**: Frequency-based extractive summarizer (03-1_text_summarization.ipynb)
+- **Enhanced version**: Advanced TextRank implementation with evaluation (03-2_text_summarization_expanded.ipynb)
 - **Real-world dataset**: CNN/DailyMail news articles and summaries
 - **Evaluation framework**: Automatic ROUGE scoring for objective comparison
 
@@ -41,8 +41,8 @@ We use the standard CNN/DailyMail summarization dataset containing:
 │   ├── data_loader.py          # Dataset loading utilities
 │   └── requirements.txt         # Project dependencies
 ├── notebooks/
-│   ├── 02_text_summarization_expanded.ipynb  # Enhanced notebook (TextRank)
-│   └── 03_text_summarization.ipynb           # Original frequency-based notebook
+│   ├── 03-2_text_summarization_expanded.ipynb  # Enhanced notebook (TextRank)
+│   └── 03-1_text_summarization.ipynb           # Original frequency-based notebook
 └── README.md                   # Project documentation
 ```
 
@@ -80,13 +80,13 @@ The CNN/DailyMail dataset is loaded using the Hugging Face `datasets` library. A
 
 ## 📊 Methodology
 
-### Original Frequency-Based Method (03_text_summarization.ipynb)
+### Original Frequency-Based Method (03-1_text_summarization.ipynb)
 
 1. **Word Frequency Analysis**: Count word occurrences, excluding stop words
 2. **Sentence Scoring**: Sum word frequencies for each sentence
 3. **Threshold Selection**: Select sentences scoring above median frequency
 
-### Advanced TextRank Method (02_text_summarization_expanded.ipynb)
+### Advanced TextRank Method (03-2_text_summarization_expanded.ipynb)
 
 1. **Similarity Matrix**: Calculate cosine similarity between sentence vectors
 2. **Graph Construction**: Sentences as nodes, similarity as edges
@@ -121,9 +121,9 @@ python -c "import nltk; nltk.download('punkt'); nltk.download('stopwords'); nltk
 cd 03_text_summarization
 
 # Launch Jupyter Notebook
-jupyter notebook notebooks/02_text_summarization_expanded.ipynb
+jupyter notebook notebooks/03-2_text_summarization_expanded.ipynb
 # or
-jupyter notebook notebooks/03_text_summarization.ipynb
+jupyter notebook notebooks/03-1_text_summarization.ipynb
 ```
 
 ## 📝 Dependencies
@@ -146,7 +146,7 @@ jupyter notebook notebooks/03_text_summarization.ipynb
 MIT — See LICENSE file for details.
 
 ### 🤖 AI-Augmented Development
-This expanded notebook (02_text_summarization_expanded.ipynb) was created with the assistance of an AI agent (Hermes/Atemis) following a structured delegation workflow. The AI analyzed requirements, designed the project structure, implemented the code, and ensured educational quality. This demonstrates a modern approach to rapid prototyping and learning with AI as a collaborative partner.
+This expanded notebook (03-2_text_summarization_expanded.ipynb) was created with the assistance of an AI agent (Hermes/Atemis) following a structured delegation workflow. The AI analyzed requirements, designed the project structure, implemented the code, and ensured educational quality. This demonstrates a modern approach to rapid prototyping and learning with AI as a collaborative partner.
 
 ---
 **Workflow**: Requirement analysis → Project design → Implementation → Evaluation → Documentation

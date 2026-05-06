@@ -46,8 +46,8 @@ def main():
     """Main test function."""
     base_dir = "/home/lawrancekoh/projects/data-science/03_text_summarization"
     notebooks = [
-        "notebooks/02_text_summarization_expanded.ipynb",
-        "notebooks/03_text_summarization.ipynb"
+        "notebooks/03-2_text_summarization_expanded.ipynb",
+        "notebooks/03-1_text_summarization.ipynb"
     ]
     
     print("=" * 60)
