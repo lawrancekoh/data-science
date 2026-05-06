@@ -1,116 +1,152 @@
 # Extractive Text Summarization
 
 ## 📌 Overview
-Frequency-based NLP pipeline that automatically generates summaries from domain-specific articles. Uses NLTK for sentence tokenisation, word frequency scoring, and threshold-based sentence selection to produce concise summaries.
+
+This project explores **extractive text summarization** techniques, progressing from basic frequency-based methods to more advanced graph-based approaches. The project now includes:
+
+- **Original method**: Frequency-based extractive summarizer (03_text_summarization.ipynb)
+- **Enhanced version**: Advanced TextRank implementation with evaluation (02_text_summarization_expanded.ipynb)
+- **Real-world dataset**: CNN/DailyMail news articles and summaries
+- **Evaluation framework**: Automatic ROUGE scoring for objective comparison
 
 ## 🎯 Problem Statement
-In the age of information overload, manual reading and summarization of large documents is time-consuming. Automated text summarization provides a solution by using algorithms to identify and retain key information while discarding redundancy. This project aims to build an extractive summarizer that can condense articles into their main points.
+
+In the age of information overload, manually reading and summarizing large documents is time-consuming. Automated text summarization algorithms can quickly identify key information and produce concise summaries, making them invaluable for:
+
+- Research analysts processing reports
+- Journalists summarizing articles
+- Students reviewing academic papers
+- Business professionals handling documents
 
 ## 📂 Data Sources
-| Data Source | Description | Size | Format | Access Date |
-|-------------|-------------|------|--------|-------------|
-| Sample News Articles | Collection of domain-specific articles for summarization | 10-15 articles | Text files | 2023-06-01 |
+
+### CNN/DailyMail Dataset
+
+We use the standard CNN/DailyMail summarization dataset containing:
+
+- **News articles** from CNN and the Daily Mail
+- **Professional summaries** (highlights) for each article
+- **Diverse topics**: Politics, business, technology, entertainment, etc.
+- **Standard benchmark**: Enables comparison with state-of-the-art methods
+
+### Project Data Structure
+
+```bash
+03_text_summarization/
+├── data/
+│   ├── raw/                    # Original text files
+│   ├── cnn_dailymail/          # CNN/DM dataset cache
+│   └── sample/                 # Sample articles for testing
+├── scripts/
+│   ├── data_loader.py          # Dataset loading utilities
+│   └── requirements.txt         # Project dependencies
+├── notebooks/
+│   ├── 02_text_summarization_expanded.ipynb  # Enhanced notebook (TextRank)
+│   └── 03_text_summarization.ipynb           # Original frequency-based notebook
+└── README.md                   # Project documentation
+```
 
 ### Data Acquisition
-Sample articles were manually collected from various news sources covering technology, business, and general interest topics. The articles range from 500-2000 words and represent diverse writing styles and content domains.
+
+The CNN/DailyMail dataset is loaded using the Hugging Face `datasets` library. A sample of articles is cached locally for quick access during development.
 
 ## 🔧 Preprocessing & Data Cleaning
-### Data Quality Issues Identified
+
+### Data Quality Issues Addressed
+
 - **Text formatting**: Inconsistent paragraph breaks, extra whitespace
 - **Special characters**: HTML entities, punctuation variations
 - **Stop words**: Common words that add little semantic value
 - **Case sensitivity**: Mixed uppercase/lowercase text
 - **Sentence boundaries**: Abbreviations causing incorrect tokenization
 
-### Cleaning Steps Applied
-1. **Text normalization**:
-   - Converted all text to lowercase
-   - Removed extra whitespace and line breaks
-   - Cleaned HTML entities and special characters
-2. **Sentence tokenization**:
-   - Split text into individual sentences using NLTK's sentence tokenizer
-   - Handled abbreviations and edge cases
-3. **Word tokenization**:
-   - Split sentences into individual words
-   - Removed punctuation and special characters
-4. **Stopword removal**:
-   - Filtered out common English stopwords using NLTK's corpus
-   - Custom stopword list for domain-specific terms
-5. **Frequency analysis**:
-   - Calculated word frequencies across the document
-   - Applied weighted scoring for term importance
+### Enhanced Cleaning Pipeline
+
+1. **Text normalization**: Remove citation brackets, extra whitespace, special characters
+2. **Sentence tokenization**: NLTK's sentence tokenizer with abbreviation handling
+3. **Word tokenization**: Split sentences into words
+4. **Stopword removal**: Filter out common English stopwords
+5. **Lemmatization**: Reduce words to their base forms (e.g., "running" → "run")
+6. **Length filtering**: Skip very short sentences to improve quality
 
 ## 🛠 Tools & Tech Stack
+
 | Category | Tools & Libraries |
 |----------|-------------------|
-| Core | Python 3.8, NLTK 3.8, NumPy 1.24 |
-| Text Processing | NLTK Tokenizers, Regex, Heapq |
-| Development | Jupyter Notebook 6.5, Git |
+| Core | Python 3.8, NLTK 3.8, NumPy 1.24, Hugging Face Datasets |
+| Text Processing | NLTK Tokenizers, Regex, WordNet Lemmatizer |
+| Evaluation | rouge-score (ROUGE metrics) |
+| Development | Jupyter Notebook, Git |
 
 ## 📊 Methodology
-### Text Preprocessing Pipeline
-1. **Text Cleaning**: Removal of special characters, digits, and extra spaces
-2. **Tokenization**: Splitting text into sentences and words
-3. **Stopword Removal**: Filtering out common words (e.g., "the", "is")
-4. **Frequency Calculation**: Counting word occurrences and normalizing
 
-### Frequency Analysis
-- **Word Frequency**: Calculating the occurrence of each word to determine its importance
-- **Weighted Frequency**: Normalizing frequencies to score words relative to the most frequent word
-- **Sentence Scoring**: Summing weighted frequencies of constituent words
+### Original Frequency-Based Method (03_text_summarization.ipynb)
 
-### Summary Generation
-- **Sentence Selection**: Using heapq to select top N sentences with highest scores
-- **Summary Construction**: Concatenating selected sentences to form final summary
-- **Length Optimization**: Balancing summary length vs. information retention
+1. **Word Frequency Analysis**: Count word occurrences, excluding stop words
+2. **Sentence Scoring**: Sum word frequencies for each sentence
+3. **Threshold Selection**: Select sentences scoring above median frequency
 
-## 🔑 Key Concepts
-- **Extractive Summarization**: Selecting existing sentences rather than generating new ones (Abstractive)
-- **TF-IDF Logic**: Frequency-based scoring where frequent, non-stop words drive meaning
-- **Sentence Scoring**: Each sentence's importance based on constituent word frequencies
-- **Threshold-based Selection**: Dynamic selection based on score thresholds
+### Advanced TextRank Method (02_text_summarization_expanded.ipynb)
+
+1. **Similarity Matrix**: Calculate cosine similarity between sentence vectors
+2. **Graph Construction**: Sentences as nodes, similarity as edges
+3. **PageRank Algorithm**: Compute importance scores iteratively
+4. **Top-K Selection**: Select highest-scoring sentences as summary
+
+### Evaluation Framework
+
+- **ROUGE-1**: Unigram overlap with reference summary
+- **ROUGE-2**: Bigram overlap with reference summary
+- **ROUGE-L**: Longest common subsequence similarity
 
 ## 🚀 How to Run
+
 ### Setup
+
 ```bash
 # Create virtual environment
 python -m venv venv && source venv/bin/activate
 
 # Install dependencies with pinned versions
-pip install -r requirements.txt
+pip install -r scripts/requirements.txt
 
 # Download NLTK data
-python -c "import nltk; nltk.download('punkt'); nltk.download('stopwords')"
+python -c "import nltk; nltk.download('punkt'); nltk.download('stopwords'); nltk.download('wordnet')"
 ```
 
 ### Execution
+
 ```bash
 # Navigate to project
 cd 03_text_summarization
 
 # Launch Jupyter Notebook
+jupyter notebook notebooks/02_text_summarization_expanded.ipynb
+# or
 jupyter notebook notebooks/03_text_summarization.ipynb
 ```
 
-## 📁 Project Structure
-```
-03_text_summarization/
-├── data/           # Sample articles for summarization
-├── notebooks/      # NLP pipeline and summarization notebook
-├── results/        # Generated summaries and reports
-└── README.md       # Project documentation
-```
-
 ## 📝 Dependencies
+
 - Python 3.8+
 - nltk==3.8.1
 - numpy==1.24.3
-- heapq (built-in)
+- datasets==2.14.0
+- rouge-score==2.0.1
 
 ## 📚 References
+
 - NLTK Documentation: https://www.nltk.org/
-- Text Summarization Techniques: A Review (Alguliev et al.)
-- Frequency-based Sentence Scoring Methods
+- TextRank: Bringing Order into Texts (Mihalcea & Tarau, 2004)
+- CNN/DailyMail Dataset: https://huggingface.co/datasets/cnn_dailymail
+- ROUGE: A Package for Automatic Evaluation of Summaries (Lin, 2004)
 
 ## 🤝 License
+
 MIT — See LICENSE file for details.
+
+### 🤖 AI-Augmented Development
+This expanded notebook (02_text_summarization_expanded.ipynb) was created with the assistance of an AI agent (Hermes/Atemis) following a structured delegation workflow. The AI analyzed requirements, designed the project structure, implemented the code, and ensured educational quality. This demonstrates a modern approach to rapid prototyping and learning with AI as a collaborative partner.
+
+---
+**Workflow**: Requirement analysis → Project design → Implementation → Evaluation → Documentation
